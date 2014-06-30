@@ -85,7 +85,7 @@ public class CategoryResourceIT extends IntegrationTest {
             = given().
             pathParam("id", 1).
             when().
-            get(ROOT + "/rest/service/v2/categories/{id}").then().
+            get(ROOT + "/rest/fhb/v2/categories/{id}").then().
             extract().response();
     System.out.println("RESPONSE: ");
     resp.prettyPrint();
