@@ -3,16 +3,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.welovecoding.web</groupId>
-  <artifactId>wlc-webapp</artifactId>
+  <artifactId>fhb-tutorien</artifactId>
   <version>0.0.10-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>We Love Coding (webapp)</name>
-  <url>https://github.com/bennyn/wlc-webapp</url>
+  <name>Informatik Tutorien (webapp)</name>
+  <url>https://github.com/Yserz/fhb-tutorien</url>
   <inceptionYear>2014</inceptionYear>
-  <description>We Love Coding provides a numerous collection of video tutorials for developers. The spectrum ranges from the introduction to object-oriented programming languages such as C#, Java, Ruby, and C++ to topics of web development with HTML5 and JavaScript and to the development of apps for iOS, Android and Windows Phone.</description>
+  <description>Programming Tutorials provides a numerous collection of video tutorials for developers. The spectrum ranges from the introduction to object-oriented programming languages such as C#, Java, Ruby, and C++ to topics of web development with HTML5 and JavaScript and to the development of apps for iOS, Android and Windows Phone.</description>
   <organization>
-    <name>We Love Coding</name>
+    <name>Informatik Tutorien</name>
     <url>http://www.welovecoding.com</url>
   </organization>
   <developers>
@@ -34,14 +34,14 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:git:git@github.com:bennyn/wlc-webapp.git</connection>
-    <developerConnection>scm:git:git@github.com:bennyn/wlc-webapp.git</developerConnection>
-    <url>https://github.com/bennyn/wlc-webapp</url>
+    <connection>scm:git:git@github.com:Yserz/fhb-tutorien.git</connection>
+    <developerConnection>scm:git:git@github.com:Yserz/fhb-tutorien.git</developerConnection>
+    <url>https://github.com/Yserz/fhb-tutorien</url>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
     <system>GitHub Issue Management</system>
-    <url>https://github.com/bennyn/wlc-webapp/issues</url>
+    <url>https://github.com/Yserz/fhb-tutorien/issues</url>
   </issueManagement>
   <distributionManagement>
     <repository>
@@ -58,8 +58,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     
-    <jdbc.url>jdbc:mysql://localhost:3306/welovecoding</jdbc.url>
-    <jdbc.username>welovecoding</jdbc.username>
+    <jdbc.url>jdbc:mysql://localhost:3306/fhbtutorien</jdbc.url>
+    <jdbc.username>fhbtutorien</jdbc.username>
     <jdbc.password>123456</jdbc.password>
     <sql.driver.version>5.1.30</sql.driver.version>
     
@@ -323,25 +323,6 @@
     </resources>
     
     <plugins>
-      <!-- TODO: We should make it work! -->
-      <!--
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.3</version>
-        <executions>
-          <execution>
-            <phase>validate</phase>
-            <goals>
-              <goal>java</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <mainClass>com.welovecoding.Main</mainClass>
-        </configuration>
-      </plugin>
-      -->
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>1.7</version>
