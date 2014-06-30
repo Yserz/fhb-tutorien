@@ -70,7 +70,7 @@ public class VideoResourceIT extends IntegrationTest {
             = given().
             pathParam("id", 1).
             when().
-            get(ROOT + "/rest/service/v2/videos/{id}").then().
+            get(ROOT + "/rest/fhb/v2/videos/{id}").then().
             extract().response();
     System.out.println("RESPONSE: ");
     resp.prettyPrint();
