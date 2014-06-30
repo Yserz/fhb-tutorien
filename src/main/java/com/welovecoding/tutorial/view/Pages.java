@@ -2,7 +2,6 @@ package com.welovecoding.tutorial.view;
 
 public class Pages {
 
-  public static final String INDEX = "/index.xhtml";
   public static final String LOGIN = "/login.xhtml";
   public static final String ADMIN_LOGIN = "/login?faces-redirect=true";
   public static final String ADMIN_POST_LOGIN = "/admin/index?faces-redirect=true";
@@ -12,9 +11,8 @@ public class Pages {
   public static final String ADMIN_PLAYLISTS = "/admin/playlists";
   public static final String ADMIN_VIDEOS = "/admin/videos";
   public static final String ADMIN_USERS = "/admin/users";
-  public static final String REST_VERSION_1 = "/rest/service/v1";
-  public static final String REST_FHB = "/rest/fhb/v1";
-  public static final String REST_VERSION_2 = "/rest/service/v2";
+  public static final String REST_VERSION_1 = "/rest/fhb/v1";
+  public static final String REST_VERSION_2 = "/rest/fhb/v2";
 
   //REST V2
   public static final String REST_CATEGORY = "categories/{0}";

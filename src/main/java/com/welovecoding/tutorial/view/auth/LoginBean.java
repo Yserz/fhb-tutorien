@@ -35,6 +35,6 @@ public class LoginBean {
   public String logout() {
     LOGGER.log(Level.INFO, "Logout");
     userSessionBean.setIsLoggedIn(false);
-    return Pages.INDEX;
+    return Pages.ADMIN_LOGIN;
   }
 }
