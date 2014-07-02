@@ -1,16 +1,16 @@
 package com.welovecoding.tutorial.api.v1.mapping;
 
+import com.welovecoding.tutorial.api.v1.dto.AuthorDTO;
+import com.welovecoding.tutorial.api.v1.dto.CategoryDTO;
+import com.welovecoding.tutorial.api.v1.dto.PlaylistDTO;
+import com.welovecoding.tutorial.api.v1.dto.StatusDTO;
+import com.welovecoding.tutorial.api.v1.dto.VideoDTO;
 import com.welovecoding.tutorial.data.author.Author;
 import com.welovecoding.tutorial.data.category.Category;
 import com.welovecoding.tutorial.data.playlist.entity.LanguageCode;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import com.welovecoding.tutorial.data.playlist.entity.Provider;
 import com.welovecoding.tutorial.data.video.Video;
-import com.welovecoding.tutorial.api.v1.dto.AuthorDTO;
-import com.welovecoding.tutorial.api.v1.dto.CategoryDTO;
-import com.welovecoding.tutorial.api.v1.dto.PlaylistDTO;
-import com.welovecoding.tutorial.api.v1.dto.StatusDTO;
-import com.welovecoding.tutorial.api.v1.dto.VideoDTO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

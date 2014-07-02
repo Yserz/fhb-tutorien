@@ -17,35 +17,6 @@
       <var>backend</var>
     </resource-bundle>
     
-    <resource-bundle>
-      <base-name>com.welovecoding.texts.frontend</base-name>
-      <var>frontend</var>
-    </resource-bundle>
-    
-    <resource-bundle>
-      <base-name>com.welovecoding.texts.index</base-name>
-      <var>index</var>
-    </resource-bundle>    
-    
-    <resource-bundle>
-      <base-name>com.welovecoding.texts.tutorials</base-name>
-      <var>tutorials</var>
-    </resource-bundle>
-    
-    <resource-bundle>
-      <base-name>com.welovecoding.texts.playlists</base-name>
-      <var>playlists</var>
-    </resource-bundle>
-    
-    <resource-bundle>
-      <base-name>com.welovecoding.texts.team</base-name>
-      <var>team</var>
-    </resource-bundle>
-    
-    <resource-bundle>
-      <base-name>com.welovecoding.texts.imprint</base-name>
-      <var>imprint</var>
-    </resource-bundle>
     
   </application>
   

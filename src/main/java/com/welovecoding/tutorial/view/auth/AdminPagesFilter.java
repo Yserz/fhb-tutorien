@@ -16,15 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminPagesFilter implements Filter {
 
   @Inject
-  private AuthSessionBean userSessionBean;
+  private AuthSessionBean authSessionBean;
 
   public AdminPagesFilter() {
-  }
-
-  private boolean isAllowed() {
-    User user = userSessionBean.getUser();
-
-    return user.isAdmin();
   }
 
   @Override
@@ -32,19 +26,31 @@ public class AdminPagesFilter implements Filter {
           throws IOException, ServletException {
     HttpServletRequest servletRequest = (HttpServletRequest) request;
     HttpServletResponse servletResponse = (HttpServletResponse) response;
+    User user = authSessionBean.getUser();
 
-    System.out.println("User is allowed: " + isAllowed());
-
-    if (!isAllowed()) {
+    if (!user.isAdmin()) {
       // Deny Access
       String referrer = servletRequest.getRequestURL().toString();
-      userSessionBean.setDeniedUrl(referrer);
+      authSessionBean.setDeniedUrl(referrer);
 
-      // Send redirect
       String contextPath = servletRequest.getContextPath();
-      servletResponse.sendRedirect(contextPath + Pages.LOGIN);
-    }
 
+      if (user.getName() == null) {
+        // Send redirect and cut the chain
+        servletResponse.sendRedirect(contextPath + Pages.LOGIN);
+        // return is correct for redirect but breaks the GoogleLogin
+//        return;
+      } else {
+        if (user.isAdmin()) {
+          //TODO should never happen since the first 'if' already checks this?
+          // Send redirect and cut the chain
+          servletResponse.sendRedirect(contextPath + Pages.LOGIN);
+          // return is correct for redirect but breaks the GoogleLogin
+//          return;
+        }
+      }
+
+    }
     // Continue filtering...
     chain.doFilter(request, response);
   }

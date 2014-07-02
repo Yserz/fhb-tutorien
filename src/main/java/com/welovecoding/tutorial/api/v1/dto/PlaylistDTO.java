@@ -124,5 +124,4 @@ public class PlaylistDTO {
   public void setDifficulty(String difficulty) {
     this.difficulty = difficulty;
   }
-
 }
