@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:wlc="http://java.sun.com/jsf/composite/wlc">
+  <h:body>
+    <ui:composition template="/WEB-INF/templates/frontend/main.xhtml">
+
+      <ui:define name="title">#{team.title}</ui:define>
+      <ui:param name="activeLink" value="team.xhtml" />
+
+      <ui:define name="extra-stylesheets">
+        <h:outputStylesheet library="css/generated/frontend/grids" name="grid-team.css" />
+      </ui:define>
+
+      <ui:define name="center-unit-1">
+        <div class="pure-u-1">
+          <div id="team">
+            <!-- Title -->
+            <h1><h:outputText value="#{team.title}" /></h1>
+
+            <!-- 1st -->
+            <div id="grid-team" class="pure-g">
+              <wlc:team-member 
+                picture="benny-neugebauer.png"
+                firstname="Benny"
+                lastname="Neugebauer"
+                position="#{team.benny_position}"
+                homepage="http://www.bennyn.de/"
+                facebook="benny.neugebauer"
+                google="BennyNeugebauer"
+                twitter="apfelbenny"
+                about="#{team.benny_about}"
+                /> 
+
+              <wlc:team-member 
+                picture="michael-koppen.png"
+                firstname="Michael" 
+                lastname="Koppen"
+                position="#{team.michael_position}"
+                homepage="http://www.beanbelt.blogspot.de/"
+                facebook=""
+                google="MichaelKDev"
+                twitter=""
+                about="#{team.michael_about}"
+                /> 
+            </div>
+
+            <!-- 2nd -->
+            <div id="grid-team" class="pure-g">
+              <wlc:team-member 
+                picture="tamay-gunduz.png"
+                firstname="Tamay"
+                lastname="Gündüz"
+                position="#{team.tamay_position}"
+                homepage="http://www.tamaygunduz.de/"
+                facebook="tamaygz"
+                google=""
+                twitter="tamaygz"
+                about="#{team.tamay_about}"
+                /> 
+
+              <wlc:team-member 
+                picture="gregor-biswanger.png"
+                firstname="Gregor" 
+                lastname="Biswanger"
+                position="#{team.gregor_position}"
+                homepage="http://about.me/gregor.biswanger/"
+                facebook="gregor.biswanger"
+                google="GregorBiswanger"
+                twitter="BFreakout"
+                about="#{team.gregor_about}"
+                /> 
+            </div>
+
+            <!-- 3rd -->
+            <div id="grid-team" class="pure-g">
+              <wlc:team-member 
+                picture="simpletechs.png"
+                firstname="simpleTechs"
+                lastname=""
+                position="#{team.simpletechs_position}"
+                homepage="http://www.simpletechs.net/"
+                facebook="simpleTechs"
+                google="SimpletechsNet"
+                twitter="simpleTechs"
+                about="#{team.simpletechs_about}"
+                /> 
+            </div>
+
+          </div>
+        </div>
+      </ui:define>
+
+    </ui:composition>
+  </h:body>
+</html>
