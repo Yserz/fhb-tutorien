@@ -134,6 +134,10 @@
   <!-- http://stackoverflow.com/a/3642969/451634 -->
   <error-page>
     <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+    <location>/login.xhtml</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
     <location>/admin/index.xhtml</location>
   </error-page>
 </web-app>
