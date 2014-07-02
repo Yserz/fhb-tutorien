@@ -89,6 +89,11 @@
             "required": true
           }
         }
+      },
+      "difficulty": {
+        "type": ["string", "null"],
+        "id": "http://jsonschema.net/0/difficulty",
+        "required": true
       }
     }
   }
