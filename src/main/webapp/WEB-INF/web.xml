@@ -137,7 +137,8 @@
     <location>/login.xhtml</location>
   </error-page>
   <error-page>
+    <!-- JSF is not processing 'AdminPagesFilter' on error-redirect!!! Can't redirect to '/admin/index.xhtml' directly! -->
     <exception-type>java.lang.Throwable</exception-type>
-    <location>/admin/index.xhtml</location>
+    <location>/login.xhtml</location>
   </error-page>
 </web-app>
