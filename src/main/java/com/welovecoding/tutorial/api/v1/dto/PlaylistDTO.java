@@ -25,7 +25,7 @@ public class PlaylistDTO {
   private String description;
   private AuthorDTO owner;
   private StatusDTO status;
-//  private String difficulty;
+  private String difficulty;
 
   public PlaylistDTO() {
   }
