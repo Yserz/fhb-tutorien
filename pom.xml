@@ -72,6 +72,7 @@
     <auth.google.client.id>123456.apps.googleusercontent.com</auth.google.client.id>
     <auth.google.client.secret>xyz</auth.google.client.secret>
     
+    <project.stage>Development</project.stage>
     <javax.faces.project.stage>Development</javax.faces.project.stage>
     <prettyfaces.production>false</prettyfaces.production>
     <prettyfaces.development>true</prettyfaces.development>
@@ -135,7 +136,7 @@
     <dependency>
       <groupId>de.yser</groupId>
       <artifactId>OwnSimpleCache</artifactId>
-      <version>0.2.1</version>
+      <version>0.2.2</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -567,6 +568,7 @@
       <id>test</id>
       <properties>
         <!-- Override properties here -->
+        <project.stage>Development</project.stage>
         <javax.faces.project.stage>Development</javax.faces.project.stage>
         <test.secured.url>/*</test.secured.url>
       </properties>
@@ -638,6 +640,7 @@
       <id>production</id>
       <properties>
         <!-- Override properties here -->
+        <project.stage>Production</project.stage>
         <javax.faces.project.stage>Production</javax.faces.project.stage>
         <prettyfaces.production>true</prettyfaces.production>
         <prettyfaces.development>false</prettyfaces.development>

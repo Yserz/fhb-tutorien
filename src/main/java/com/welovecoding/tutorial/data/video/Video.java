@@ -13,6 +13,7 @@ import static com.welovecoding.tutorial.data.video.Video.LIKE_NAME;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -49,7 +50,7 @@ public class Video extends BaseEntity {
   private String description;
 
   @NotNull
-  @ManyToOne(cascade = CascadeType.PERSIST)
+  @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   private Playlist playlist;
 
   private String previewImageUrl;
@@ -112,11 +113,6 @@ public class Video extends BaseEntity {
   }
 
   public void setPermalink(String permalink) {
-    /*
-     String categorySlug = Slugify.slugify(video.getPlaylist().getCategory().getName());
-     String playlistSlug = Slugify.slugify(video.getPlaylist().getName());
-     String permalink = String.format("http://www.welovecoding.com/tutorials/%s/%s?video=0", categorySlug, playlistSlug);
-     */
     this.permalink = permalink;
   }
 

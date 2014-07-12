@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:wlc="http://java.sun.com/jsf/composite/wlc"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+  <body>
+    <ui:composition>
+      <ui:param name="playlist" value="#{videoController.getLatestPlaylist()}"/>
+
+      <wlc:frontend-breadcrumbs level="3" />
+
+      <div class="pure-u-1">
+
+        <ui:fragment rendered="#{playlist.description != null}">
+          <p class="playlist-description">
+            <h:outputText 
+              escape="true"
+              value="#{playlist.description}" 
+              />
+          </p>
+        </ui:fragment>
+
+        <div id="grid-videos">          
+          <div class="container">
+            <ui:repeat value="#{videoController.getVideos()}" var="video">
+              <a 
+                id="#{video.slug}"
+                name="#{video.slug}"
+                href="##{video.slug}"
+                class="video-title"
+                >#{video.name}<span class="button closed"></span>
+              </a>
+              <dd>
+                <ui:fragment rendered="#{video.description != null}">
+                  <p class="video-description">
+                    <h:outputText 
+                      escape="true"
+                      value="#{video.description}" 
+                      />  
+                  </p>
+                </ui:fragment>
+
+                <div class="video"
+                     data-video-code="#{video.code}"
+                     data-video-provider="#{video.playlist.provider}"></div>
+              </dd>
+            </ui:repeat>
+          </div>
+        </div>
+
+      </div>
+    </ui:composition>
+  </body>
+</html>
