@@ -53,7 +53,6 @@ public class LogControlService {
   private static Map<String, Map> loggerTypes;
 
   public LogControlService() {
-    System.out.println("LogControlService()");
     loggerTypes = new HashMap<>();
   }
 
@@ -81,7 +80,7 @@ public class LogControlService {
     serviceLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(CategoryService.class.getName());
-    tempLogger.setLevel(Level.WARNING);
+    tempLogger.setLevel(Level.INFO);
     serviceLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(PlaylistService.class.getName());
