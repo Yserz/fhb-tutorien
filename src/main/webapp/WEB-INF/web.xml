@@ -141,4 +141,5 @@
     <exception-type>java.lang.Throwable</exception-type>
     <location>/login.xhtml</location>
   </error-page>
+  
 </web-app>
