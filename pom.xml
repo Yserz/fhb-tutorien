@@ -4,7 +4,7 @@
 
   <groupId>com.welovecoding.web</groupId>
   <artifactId>fhb-tutorien</artifactId>
-  <version>0.0.6</version>
+  <version>0.0.7-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>Informatik Tutorien (webapp)</name>
@@ -37,7 +37,7 @@
     <connection>scm:git:git@github.com:Yserz/fhb-tutorien.git</connection>
     <developerConnection>scm:git:git@github.com:Yserz/fhb-tutorien.git</developerConnection>
     <url>https://github.com/Yserz/fhb-tutorien</url>
-    <tag>fhb-tutorien/0.0.6</tag>
+    <tag>HEAD</tag>
   </scm>
   <issueManagement>
     <system>GitHub Issue Management</system>
