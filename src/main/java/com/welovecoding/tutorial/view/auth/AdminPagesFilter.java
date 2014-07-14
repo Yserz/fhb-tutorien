@@ -47,11 +47,6 @@ public class AdminPagesFilter implements Filter {
           servletResponse.sendRedirect(contextPath + Pages.LOGIN);
           // return is correct for redirect but breaks the GoogleLogin
 //          return;
-        } else {
-          // Send redirect and cut the chain
-          servletResponse.sendRedirect(contextPath + Pages.PROFILE);
-          // return is correct for redirect but breaks the GoogleLogin
-//          return;
         }
       }
 
