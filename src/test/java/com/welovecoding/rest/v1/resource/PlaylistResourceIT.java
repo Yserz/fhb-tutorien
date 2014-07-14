@@ -70,7 +70,7 @@ public class PlaylistResourceIT extends IntegrationTest {
             = given().
             pathParam("id", 1).
             when().
-            get(ROOT + "/rest/fhb/v1/category/{id}").then().//test
+            get(ROOT + "/rest/fhb/v1/category/{id}").then().
             extract().response();
     System.out.println("RESPONSE: ");
     resp.prettyPrint();
