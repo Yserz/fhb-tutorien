@@ -129,16 +129,15 @@
   </security-constraint>
   <!-- Homepages -->
   <welcome-file-list>
-    <welcome-file>login.xhtml</welcome-file>
+    <welcome-file>index.xhtml</welcome-file>
   </welcome-file-list>
   <!-- http://stackoverflow.com/a/3642969/451634 -->
   <error-page>
     <exception-type>javax.faces.application.ViewExpiredException</exception-type>
-    <location>/login.xhtml</location>
+    <location>/index.xhtml</location>
   </error-page>
   <error-page>
-    <!-- JSF is not processing 'AdminPagesFilter' on error-redirect!!! Can't redirect to '/admin/index.xhtml' directly! -->
     <exception-type>java.lang.Throwable</exception-type>
-    <location>/login.xhtml</location>
+    <location>/index.xhtml</location>
   </error-page>
 </web-app>
