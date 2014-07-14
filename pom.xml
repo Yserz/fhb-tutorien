@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.welovecoding.web</groupId>
-  <artifactId>wlc-webapp</artifactId>
-  <version>0.0.26-SNAPSHOT</version>
+  <artifactId>fhb-tutorien</artifactId>
+  <version>0.0.7-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>Informatik Tutorien (webapp)</name>
