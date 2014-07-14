@@ -68,6 +68,31 @@
       <var>sponsors</var>
     </resource-bundle>
     
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.profile</base-name>
+      <var>profile</var>
+    </resource-bundle>
+    
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.ebooks</base-name>
+      <var>ebooks</var>
+    </resource-bundle>
+    
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.main_header</base-name>
+      <var>main_header</var>
+    </resource-bundle>
+    
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.join_us</base-name>
+      <var>join_us</var>
+    </resource-bundle>
+    
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.sponsors</base-name>
+      <var>sponsors</var>
+    </resource-bundle>
+    
   </application>
   
   
