@@ -3,7 +3,6 @@ package com.welovecoding.tutorial.view;
 public class Pages {
 
   public static final String LOGIN = "/login.xhtml";
-  public static final String PROFILE = "/profile.xhtml";
   public static final String ADMIN_LOGIN = "/login?faces-redirect=true";
   public static final String ADMIN_POST_LOGIN = "/admin/index?faces-redirect=true";
   public static final String ADMIN_AUTHORS = "/admin/authors";
