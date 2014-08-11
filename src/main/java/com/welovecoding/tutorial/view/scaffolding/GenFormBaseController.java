@@ -44,8 +44,6 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
    * @see http://stackoverflow.com/a/4605163/451634
    */
   public GenFormBaseController() {
-    LOG.setLevel(Level.FINE);
-
     componentFactory = new ComponentFactory(StringUtils.lowerFirstChar(this.getClass().getSimpleName()));
     FacesContext context = FacesContext.getCurrentInstance();
     HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -56,11 +54,11 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
   //TODO this should be in BaseController instead of GenFormBaseController
   private void initPagination(String page) {
-    setAmount(RESULTS_PER_PAGE);
+    setItemsPerPage(RESULTS_PER_PAGE);
 
     if (page != null) {
       setCurrentPage(Integer.valueOf(page));
-      setOffset((getCurrentPage() - 1) * getAmount());
+      setOffset((getCurrentPage() - 1) * getItemsPerPage());
     } else {
       setCurrentPage(1);
       setOffset(0);

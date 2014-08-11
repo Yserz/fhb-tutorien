@@ -4,11 +4,10 @@ import com.welovecoding.tutorial.data.base.BaseService;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 
 @Stateless
 public class VideoService extends BaseService<Video, VideoRepository> {
@@ -30,14 +29,18 @@ public class VideoService extends BaseService<Video, VideoRepository> {
     return cacheService;
   }
 
-  public Video getVideoByCode(String code) {
+  public Video findByCode(String code) {
     return repository.findByCode(code);
   }
 
-  //TODO Why NOT_SUPPORTED ?
-  @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-  public Video getDetachedVideoByCode(String code) {
-    return repository.findByCode(code);
+  public Video findByCodeDetached(String code) {
+    Video video = this.findByCode(code);
+
+    if (video != null) {
+      repository.em.detach(video);
+    }
+
+    return video;
   }
 
   public Video findInCategory(Long categoryid, Long videoid) {
@@ -52,8 +55,16 @@ public class VideoService extends BaseService<Video, VideoRepository> {
     return repository.findInPlaylist(playlistid, videoid);
   }
 
-  public Video getByPlaylistAndSlug(long playlistid, String slug) {
-    return repository.getByPlaylistAndSlug(playlistid, slug);
+  public Video findByPlaylistAndSlug(long playlistid, String slug) {
+    return repository.findByPlaylistAndSlug(playlistid, slug);
+  }
+
+  public List<Video> findAllInPlaylist(Long playlistid) {
+    return repository.findAllInPlaylist(playlistid);
+  }
+
+  public List<Video> findAllInCategoryAndPlaylist(Long categoryid, Long playlistid) {
+    return repository.findAllInCategoryAndPlaylist(categoryid, playlistid);
   }
 
   @Override

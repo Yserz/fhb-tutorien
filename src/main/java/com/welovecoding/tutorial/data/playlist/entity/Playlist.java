@@ -22,6 +22,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -47,14 +48,15 @@ public class Playlist extends BaseEntity {
   @Embedded @Enumerated(EnumType.STRING)
   private Difficulty difficulty;
 
-  @NotNull @ManyToOne(cascade = CascadeType.PERSIST)
+  @NotNull @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   private Category category;
 
-  @NotNull @ManyToOne(cascade = CascadeType.PERSIST)
+  @NotNull @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   private Author author;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist", orphanRemoval = true)
   @OrderColumn(name = "ORDERING")
+  @Valid
   private List<Video> videos;
 
   private String code;

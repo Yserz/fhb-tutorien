@@ -3,7 +3,6 @@ package com.welovecoding.tutorial.api.v2.mapping;
 import com.welovecoding.tutorial.api.v2.dto.AuthorDTO;
 import com.welovecoding.tutorial.api.v2.dto.CategoryDTO;
 import com.welovecoding.tutorial.api.v2.dto.PlaylistDTO;
-import com.welovecoding.tutorial.api.v2.dto.StatusDTO;
 import com.welovecoding.tutorial.api.v2.dto.VideoDTO;
 import com.welovecoding.tutorial.data.author.Author;
 import com.welovecoding.tutorial.data.category.Category;
@@ -21,7 +20,7 @@ import java.util.Set;
 
 /**
  *
- * @author MacYser
+ * @author Michael Koppen
  */
 public class DTOMapper {
 
@@ -92,8 +91,8 @@ public class DTOMapper {
       dto.setNumberOfVideos(e.getVideos().size());
       dto.setAuthor(mapAuthor(e.getAuthor()));
       dto.setProvider(e.getProvider().toString());
-//    dto.setSlug(e.getSlug());
-      dto.setStatus(new StatusDTO());
+      dto.setCode(e.getCode());
+      dto.setSlug(e.getSlug());
       dto.setName(e.getName());
       dto.setVideos(mapVideoAddressList(root, e.getVideos()));
       return dto;

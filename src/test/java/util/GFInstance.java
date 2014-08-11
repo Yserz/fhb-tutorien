@@ -27,7 +27,7 @@ public class GFInstance {
   public static Deployer deployer;
   public static GlassFish glassfish;
   public static ScatteredArchive archive;
-  public static final String APP_NAME = "WeLoveCodingTest";
+  public static final String APP_NAME = "FHBTest";
 
   public static void startInstance() throws Exception {
 
@@ -49,8 +49,8 @@ public class GFInstance {
     archive = new ScatteredArchive(APP_NAME, ScatteredArchive.Type.WAR);
     archive.addClassPath(new File("target", "classes"));
 
-    System.out.println(readFile(new File("target", "fhb-tutorien/WEB-INF/glassfish-resources.xml")));
-    archive.addMetadata(new File("target", "fhb-tutorien/WEB-INF/glassfish-resources.xml"));
+    System.out.println(readFile(new File("src/test/resources/META-INF", "glassfish-resources.xml")));
+    archive.addMetadata(new File("src/test/resources/META-INF", "glassfish-resources.xml"));
 
     for (File jar : new File("target", "fhb-tutorien/WEB-INF/lib/").listFiles()) {
       archive.addClassPath(jar);

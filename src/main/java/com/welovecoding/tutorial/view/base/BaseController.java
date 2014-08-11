@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.validation.ConstraintViolation;
 
 @Dependent
@@ -29,7 +30,7 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
 
   // Pagination
   private int offset;
-  private int amount;
+  private int itemsPerPage;
   private int currentPage;
   private int totalPages;
 
@@ -52,7 +53,6 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
   public String edit() {
     String template = "Saving item: {0}";
     LOG.log(Level.INFO, template, getItem().getName());
-    System.out.println("EDIT ITEM: " + getItem().toString());
 
     try {
 
@@ -86,9 +86,8 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
   }
 
   private void loadItems() {
-    if (items == null) {
-      setItems(getService().findRange(getOffset(), getAmount()));
-    }
+    List retrievedItems = getService().findRange(getOffset(), getItemsPerPage());
+    setItems(retrievedItems);
   }
 
   /**
@@ -128,12 +127,12 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
     this.offset = offset;
   }
 
-  public int getAmount() {
-    return amount;
+  public int getItemsPerPage() {
+    return itemsPerPage;
   }
 
-  public void setAmount(int amount) {
-    this.amount = amount;
+  public void setItemsPerPage(int itemsPerPage) {
+    this.itemsPerPage = itemsPerPage;
   }
 
   public int getCurrentPage() {
@@ -153,12 +152,12 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
   }
 
   public int getTotalPages() {
-    if (amount == 0) {
+    if (itemsPerPage == 0) {
       return 1;
     }
 
-    int pages = getItemSize() / amount;
-    int mod = getItemSize() % amount;
+    int pages = getItemSize() / itemsPerPage;
+    int mod = getItemSize() % itemsPerPage;
 
     if (mod > 0) {
       pages += 1;
@@ -173,5 +172,18 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
 
   public void setTotalPages(int totalPages) {
     this.totalPages = totalPages;
+  }
+
+  public void changedItemsPerPage(ValueChangeEvent event) {
+    int newItemsPerPage = (int) event.getNewValue();
+
+    // Update items per page
+    itemsPerPage = newItemsPerPage;
+
+    // Update total pages
+    getTotalPages();
+
+    // Update items
+    getItems();
   }
 }

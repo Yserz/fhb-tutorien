@@ -3,12 +3,15 @@ package com.welovecoding.tutorial.data.video;
 import com.welovecoding.tutorial.data.base.BaseEntity;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import static com.welovecoding.tutorial.data.video.Video.FIND_ALL_IN_CATEGORY;
+import static com.welovecoding.tutorial.data.video.Video.FIND_ALL_IN_CATEGORY_AND_PLAYLIST;
+import static com.welovecoding.tutorial.data.video.Video.FIND_ALL_IN_PLAYLIST;
 import static com.welovecoding.tutorial.data.video.Video.FIND_BY_CODE;
 import static com.welovecoding.tutorial.data.video.Video.FIND_BY_PLAYLIST_AND_SLUG;
 import static com.welovecoding.tutorial.data.video.Video.FIND_IN_CATEGORY;
 import static com.welovecoding.tutorial.data.video.Video.FIND_IN_CATEGORY_AND_PLAYLIST;
 import static com.welovecoding.tutorial.data.video.Video.FIND_IN_PLAYLIST;
 import static com.welovecoding.tutorial.data.video.Video.LIKE_NAME;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +28,8 @@ import javax.validation.constraints.Size;
   @NamedQuery(name = LIKE_NAME, query = "SELECT v FROM Video v WHERE UPPER(v.name) LIKE UPPER(:keyword)"),
   @NamedQuery(name = FIND_ALL_IN_CATEGORY, query = "SELECT v FROM Video v WHERE v.playlist.category.id = :playlistid"),
   @NamedQuery(name = FIND_IN_PLAYLIST, query = "SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.id = :playlistid"),
+  @NamedQuery(name = FIND_ALL_IN_PLAYLIST, query = "SELECT v FROM Video v WHERE v.playlist.id = :playlistid"),
+  @NamedQuery(name = FIND_ALL_IN_CATEGORY_AND_PLAYLIST, query = "SELECT v FROM Video v WHERE v.playlist.category.id = :categoryid AND v.playlist.id = :playlistid"),
   @NamedQuery(name = FIND_IN_CATEGORY, query = "SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.category.id = :categoryid"),
   @NamedQuery(name = FIND_IN_CATEGORY_AND_PLAYLIST, query = "SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.category.id = :categoryid AND v.playlist.id = :playlistid"),
   @NamedQuery(name = FIND_BY_PLAYLIST_AND_SLUG, query = "SELECT v FROM Video v WHERE v.slug = :videoslug AND v.playlist.id = :playlistid")
@@ -35,6 +40,8 @@ public class Video extends BaseEntity {
   public static final String LIKE_NAME = "Video.likeName";
   public static final String FIND_ALL_IN_CATEGORY = "Video.findAllInCategory";
   public static final String FIND_IN_PLAYLIST = "Video.findInPlaylist";
+  public static final String FIND_ALL_IN_PLAYLIST = "Video.findAllInPlaylist";
+  public static final String FIND_ALL_IN_CATEGORY_AND_PLAYLIST = "Video.findAllInCategoryAndPlaylist";
   public static final String FIND_IN_CATEGORY = "Video.findInCategory";
   public static final String FIND_IN_CATEGORY_AND_PLAYLIST = "Video.findInCategoryAndPlaylist";
   public static final String FIND_BY_PLAYLIST_AND_SLUG = "Video.findByPlaylistAndSlug";
@@ -46,8 +53,8 @@ public class Video extends BaseEntity {
   @Column(length = 1024)
   private String description;
 
+  @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
   @NotNull
-  @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   private Playlist playlist;
 
   private String previewImageUrl;
@@ -62,7 +69,7 @@ public class Video extends BaseEntity {
   public Video(String code, String name, String description) {
     this.code = code;
     this.setName(name);
-    this.description = description;
+    this.setDescription(description);
   }
 
   public String getCode() {
@@ -78,6 +85,10 @@ public class Video extends BaseEntity {
   }
 
   public void setDescription(String description) {
+    if (description != null && description.length() > 1024) {
+      description = description.substring(0, 1024);
+    }
+
     this.description = description;
   }
 
@@ -116,6 +127,32 @@ public class Video extends BaseEntity {
   @Override
   public String toString() {
     return this.getName();
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 7;
+    hash = 97 * hash + Objects.hashCode(this.code);
+    hash = 97 * hash + Objects.hashCode(this.getId());
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Video other = (Video) obj;
+    if (!Objects.equals(this.code, other.code)) {
+      return false;
+    }
+    if (!super.equals(other)) {
+      return false;
+    }
+    return true;
   }
 
 }

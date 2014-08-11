@@ -111,6 +111,7 @@ In our example a blog post entity can have embedded entities. If that is the cas
 - [http://developers.google.com/speed/pagespeed/insights/?url=wwww.welovecoding.com&tab=desktop](http://developers.google.com/speed/pagespeed/insights/?url=wwww.welovecoding.com&tab=desktop)
 - [http://validator.w3.org/check?uri=wwww.welovecoding.com](http://validator.w3.org/check?uri=wwww.welovecoding.com)
 - [http://tools.quicksprout.com/analyze/www.welovecoding.com](http://tools.quicksprout.com/analyze/www.welovecoding.com)
+- [SEO Tools from OnPage.org](http://de.onpage.org/about/free-tools/)
 - [Load testing from the cloud (free credits)](https://www.blitz.io/bKjFTlt40QR0nr7aXHFJ0Y)
 
 ## Tools: ##
@@ -127,6 +128,7 @@ In our example a blog post entity can have embedded entities. If that is the cas
 - [h:commandButton is not working](http://stackoverflow.com/a/2120183/451634)
  
 > Always strive to make code that can be modified with the least number of edits. - Lea Verou
+> Optimize only as needed. - Adam Bien
 
 Authors
 ------

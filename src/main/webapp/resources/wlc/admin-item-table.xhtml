@@ -22,22 +22,35 @@
 
     <div class="pure-g">
       <div class="pure-u-1-2">
-        <p>
-          <h:outputFormat value="#{backend['admin.page.info.items']}" >          
-            <f:param value="#{cc.attrs.controller.getItemSize()}" />
-          </h:outputFormat>
-        </p>
+        <h:outputFormat value="#{backend['admin.page.info.items']}" >          
+          <f:param value="#{cc.attrs.controller.getItemSize()}" />
+        </h:outputFormat>
       </div>
+      
       <div class="pure-u-1-2" style="text-align: right;">
-        <p>
-          <h:outputFormat value="#{backend['admin.page.info.itemsPerPage']}" >          
-            <f:param value="#{cc.attrs.controller.amount}" />
-          </h:outputFormat>
-        </p>
+        <span>#{backend['admin.page.info.itemsPerPage']}</span>
+        <h:form class="inline-block">
+          <h:selectOneMenu 
+            class="inline-block"
+            converter="javax.faces.Integer"
+            onchange="submit()"
+            value="#{cc.attrs.controller.itemsPerPage}"
+            valueChangeListener="#{cc.attrs.controller.changedItemsPerPage}" 
+            >
+            <f:selectItem itemValue="20" itemLabel="20" />	
+          </h:selectOneMenu>
+        </h:form>
       </div>
+      
+      <p></p>
     </div>
-    <ul id="pagination" class="sync-pagination pagination-sm"></ul>
-    <!-- List -->
+
+    <!-- Pagination: Top -->
+    <ui:fragment rendered="#{cc.attrs.controller.totalPages > 1}">
+      <ul id="pagination" class="sync-pagination pagination-sm"></ul>    
+    </ui:fragment>
+
+    <!-- Pagination items -->
     <table class="pure-table pure-table-horizontal" style="width: 100%;">
       <thead>
         <tr>
@@ -62,7 +75,10 @@
             </td>
             <td>
               <h:form>
-                <h:commandLink value="#{backend['admin.page.tableAction.delete']}" action="#{cc.attrs.controller.remove}">
+                <h:commandLink 
+                  value="#{backend['admin.page.tableAction.delete']}" 
+                  onclick="return confirm('#{backend['admin.form.abort']}');"
+                  action="#{cc.attrs.controller.remove}">
                   <f:setPropertyActionListener value="#{item}"
                                                target="#{cc.attrs.controller.item}" />
                 </h:commandLink>
@@ -72,17 +88,26 @@
         </ui:repeat>
       </tbody>
     </table>
-    <ul class="sync-pagination pagination-sm"></ul>
-    <script>
-      //<![CDATA[ 
-      $(document).ready(function() {
-        $('.sync-pagination').twbsPagination({
-          href: '?page={{number}}#pagination',
-          startPage: #{cc.attrs.controller.currentPage},
-          totalPages: #{cc.attrs.controller.totalPages}
+
+    <!-- Pagination: Bottom -->
+    <ui:fragment rendered="#{cc.attrs.controller.totalPages > 1}">
+      <ul class="sync-pagination pagination-sm"></ul>
+    </ui:fragment>
+
+    <!-- Pagination: JavaScript -->
+    <!-- http://esimakin.github.io/twbs-pagination/ -->
+    <ui:fragment rendered="#{cc.attrs.controller.totalPages > 1}">
+      <script>
+        //<![CDATA[ 
+        $(document).ready(function() {
+          $('.sync-pagination').twbsPagination({
+            href: '?page={{number}}#pagination',
+            startPage: #{cc.attrs.controller.currentPage},
+            totalPages: #{cc.attrs.controller.totalPages}
+          });
         });
-      });
-      //]]>
-    </script>
+        //]]>
+      </script>
+    </ui:fragment>
   </composite:implementation>
 </html>

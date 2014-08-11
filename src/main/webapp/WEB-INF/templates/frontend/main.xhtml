@@ -9,19 +9,29 @@
       <!-- Page title -->
       <title><ui:insert name="title">#{index.title}</ui:insert></title>
       <!-- Meta tags -->
-      <meta charset="UTF-8" />
+      <meta charset="UTF-8" />      
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
       <!-- SEO -->
       <meta name="robots" content="index, follow" />
-      <h:panelGroup rendered="#{facesContext.viewRoot.locale eq 'de'}">
-        <meta name="description" lang="de" content="Kostenlose Screencasts und Video-Tutorials zur Programmierung und weiteren Themen aus der Informatik." />
-        <meta name="keywords" lang="de" content="Tutorials, Programmierung, Programmieren, Screencasts, Videos, Apps, Anleitungen, Grundlagen, Howtos, Tools" />
-      </h:panelGroup>
-     	<h:panelGroup rendered="#{facesContext.viewRoot.locale eq 'en'}">
-        <meta name="description" lang="en" content="Free screencasts and video tutorials on topics in computer science and programming." />
-        <meta name="keywords" lang="en" content="tutorials, programming, screencasts, videos, apps, basics, howtos, tools" />
-      </h:panelGroup>
+      <!-- Description -->
+      <ui:insert name="meta-description">
+        <ui:fragment rendered="#{'de' eq facesContext.viewRoot.locale}">
+          <meta name="description" lang="de" content="Kostenlose Screencasts und Video-Tutorials zur Programmierung und weiteren Themen aus der Informatik." />
+        </ui:fragment>
+        <ui:fragment rendered="#{'en' eq facesContext.viewRoot.locale}">
+          <meta name="description" lang="en" content="Free screencasts and video tutorials on topics in computer science and programming." />
+        </ui:fragment>
+      </ui:insert>
+      <!-- Keywords -->
+      <ui:insert name="meta-keywords">
+        <ui:fragment rendered="#{'de' eq facesContext.viewRoot.locale}">
+          <meta name="keywords" lang="de" content="Tutorials, Programmierung, Programmieren, Screencasts, Videos, Apps, Anleitungen, Grundlagen, Howtos, Tools" />
+        </ui:fragment>
+        <h:panelGroup rendered="#{'en' eq facesContext.viewRoot.locale}">
+          <meta name="keywords" lang="en" content="tutorials, programming, screencasts, videos, apps, basics, howtos, tools" />
+        </h:panelGroup>
+      </ui:insert>
       <!-- http://blogs.msdn.com/b/ie/archive/2012/06/08/high-quality-visuals-for-pinned-sites-in-windows-8.aspx -->
       <meta name="msapplication-TileImage" content="/resources/icons/touch-icon-144-144.png" />
       <meta name="msapplication-TileColor" content="#1A1A1A" />
@@ -38,6 +48,8 @@
             />
       <!-- Facebook -->    
       <link rel="image_src" href="#{facesContext.externalContext.requestContextPath}/resources/images/icons/touch-icon-100-100.png" />
+      <!-- https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html -->
+      <meta name="apple-itunes-app" content="app-id=659282498" />
       <!-- http://developer.apple.com/library/ios/#documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
       <link rel="apple-touch-icon" href="#{facesContext.externalContext.requestContextPath}/resources/images/icons/touch-icon-57-57.png" />
       <link rel="apple-touch-icon" sizes="72x72" href="#{facesContext.externalContext.requestContextPath}/resources/images/icons/touch-icon-72-72.png" />
@@ -56,7 +68,7 @@
       <h:outputScript library="js/wlc" name="DocumentHandler.js" />
     </h:head>
     <h:body>
-      <div id="top-wrapper" class="layout-wrapper">
+      <div id="top-wrapper">
 
         <!-- Header -->
         <ui:include src="/WEB-INF/templates/frontend/grids/grid-header.xhtml" />
@@ -74,11 +86,18 @@
         </div>
       </div>
 
-      <div id="bottom-wrapper" class="layout-wrapper">
-
-        <!-- Footer -->
-        <ui:include src="/WEB-INF/templates/frontend/grids/grid-footer.xhtml" />
-
+      <div id="footer-wrapper">
+        <div id="footer-center" class="layout-wrapper">
+          <span>
+            <h:link outcome="pretty:imprint"><h:outputText value="#{imprint.title}" /></h:link> | © 2014 <a href="http://www.bennyn.de/" target="_blank">Benny Neugebauer</a> &amp; <a href="http://beanbelt.blogspot.de/" target="_blank">Michael Koppen</a>
+          </span>
+        </div>
+        <h:panelGroup 
+          id="debug-info"
+          layout="block"
+          rendered="#{facesContext.isProjectStage('Development')}">
+          <p class="text"><b>Development stage.</b> Locale: #{facesContext.viewRoot.locale}, Requested URL: #{request.requestURL} Screen:</p>
+        </h:panelGroup>
       </div>
 
       <ui:insert name="before-closing-body"></ui:insert>
